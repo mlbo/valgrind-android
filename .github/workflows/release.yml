@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       VALGRIND_VERSION: 3.17.0
-      PACKAGENAME: valgrind-3.17.0-android_arm32
+      PACKAGENAME: valgrind-3.17.0-android_armv7
     steps:
       - uses: actions/checkout@v2
       - name: ndk-fix-debug
@@ -87,7 +87,7 @@ jobs:
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PACKAGENAME: valgrind-3.17.0-android
+          PACKAGENAME: valgrind-3.17.0-android_armv7
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: artifacts/${{ env.PACKAGENAME }}/${{ env.PACKAGENAME }}.zip
