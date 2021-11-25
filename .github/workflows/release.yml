@@ -35,8 +35,8 @@ jobs:
         run: |
           cd valgrind-${{ env.VALGRIND_VERSION }}
 
-          export AR=$ANDROID_HOME/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/bin/androideabi-linux-android-ar
-          export LD=$ANDROID_HOME/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/bin/androideabi-linux-android-ld
+          export AR=$ANDROID_HOME/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/bin/arm-linux-androideabi-ar
+          export LD=$ANDROID_HOME/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/bin/arm-linux-androideabi-ld
           export CC=$ANDROID_HOME/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/bin/clang
 
           export CPPFLAGS="-O3 --target=armv7-none-linux-android19 --gcc-toolchain=$ANDROID_HOME/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=$ANDROID_HOME/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/sysroot"
@@ -48,7 +48,7 @@ jobs:
       - name: strip-debug
         run: |
           cd valgrind-${{ env.VALGRIND_VERSION }}/install
-          find . -type f | xargs -i sh -c "$ANDROID_HOME/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/bin/androideabi-linux-android-strip -g {} || true"
+          find . -type f | xargs -i sh -c "$ANDROID_HOME/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/bin/arm-linux-androideabi-strip -g {} || true"
       - name: package
         run: |
           mkdir ${{ env.PACKAGENAME }}
